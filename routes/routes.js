@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-let eventController = require('../controller/addEvents');
-const upload = require("../middleware/multer");
-router.put('/api/events', upload.array('images', 5), eventController.eventAdd);
+const multerMiddleware = require("../middleware/multer");
+const eventController = require("../controller/addEvents")
+
+router.put('/api/events', multerMiddleware.uploadMultipleFile("images",5), eventController.eventAdd);
 
 module.exports = router;
