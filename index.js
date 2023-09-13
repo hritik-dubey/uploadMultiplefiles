@@ -3,10 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT ?? 8032;
+const mongoURL = process.env.MONGOURL ?? "mongodb://localhost:27017"
 
 // Connect to MongoDB (you'll need to provide your own MongoDB URI)
-mongoose.connect(process.env.MONGOURL,
+mongoose.connect(mongoURL,
     { useNewUrlParser: true })
     .then(() => console.log("MongoDB is Connected"))
     .catch((err) => console.log(err.message))
